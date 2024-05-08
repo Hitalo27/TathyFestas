@@ -1,0 +1,7 @@
+export enum Categoria {
+  INFANTIL = "INFANTIL",
+  CASAMENTO = "CASAMENTO",
+  BODAS = "BODAS",
+  CHA_DE_PANELA = "CHA_DE_PANELA",
+  FORMATURA = "FORMATURA",
+}
