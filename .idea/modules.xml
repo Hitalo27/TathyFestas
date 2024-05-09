@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/plf-es-2023-2-ti4-0658100-browse-store.iml" filepath="$PROJECT_DIR$/.idea/plf-es-2023-2-ti4-0658100-browse-store.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/tathyfestas.main.iml" filepath="$PROJECT_DIR$/.idea/modules/tathyfestas.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/tathyfestas.test.iml" filepath="$PROJECT_DIR$/.idea/modules/tathyfestas.test.iml" />
     </modules>
   </component>
 </project>

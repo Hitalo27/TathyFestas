@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BrowsestoreApplication {
+public class TathyFestaApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BrowsestoreApplication.class, args);
+		SpringApplication.run(TathyFestaApplication.class, args);
 	}
 
 }
