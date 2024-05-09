@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import BellIcon from '@heroicons/react/24/solid/BellIcon';
-import { Avatar, Badge, IconButton, Stack, SvgIcon, Tooltip, Menu, MenuItem, Button, Drawer, Snackbar } from '@mui/material';
+import { Avatar, Badge, IconButton, Stack, SvgIcon, Tooltip, Menu, MenuItem, Button, Drawer, Snackbar, Typography } from '@mui/material';
 import { PageContext } from '@/types/enums/PageContext';
 import { useRouter } from 'next/navigation';
 interface TopBarAcoesUsuarioProps {
@@ -17,7 +17,6 @@ const AcoesUsuario: React.FC<TopBarAcoesUsuarioProps> = ({
     const router = useRouter();
 
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-    const [miniCarinhoOpen, setMiniCarinhoOpen] = useState(false);
 
     const onClickMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
@@ -67,6 +66,7 @@ const AcoesUsuario: React.FC<TopBarAcoesUsuarioProps> = ({
                         <MenuItem onClick={onCloseMenu} href="/perfil">Perfil</MenuItem>
                         <MenuItem onClick={onCloseMenu} href="/configuracoes">Configurações</MenuItem>
                         <MenuItem onClick={handleLogout} href="/logout">Logout</MenuItem>
+                        
                     </Menu>
                 </>
             ) : (

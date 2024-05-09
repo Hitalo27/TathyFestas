@@ -28,17 +28,17 @@ export default function Footer() {
           </Grid>
           <Grid item xs={12} md={4}>
             <Typography variant="h6" style={{ color: '#ffbb33', marginBottom: '8px' }}>Email</Typography>
-            <Typography>tathyfestas@gmail.com</Typography>
+            <Typography>tathyporto@yahoo.com.br</Typography>
           </Grid>
         </Grid>
         <Grid container justifyContent="center">
-          <IconButton style={{ margin: '8px', color: '#fff' }}>
+          <IconButton style={{ margin: '8px', color: '#fff' }} href="https://www.facebook.com/tathyfestasfestas" target="_blank">
             <FaFacebook />
           </IconButton>
-          <IconButton style={{ margin: '8px', color: '#fff' }}>
+          <IconButton style={{ margin: '8px', color: '#fff' }} href="https://www.instagram.com/tathyfesta/" target="_blank">
             <FaInstagram />
           </IconButton>
-          <IconButton style={{ margin: '8px', color: '#fff' }}>
+          <IconButton style={{ margin: '8px', color: '#fff' }} href="https://api.whatsapp.com/send/?phone=5531989725898&text&type=phone_number&app_absent=0" target="_blank">
             <FaWhatsapp />
           </IconButton>
         </Grid>
