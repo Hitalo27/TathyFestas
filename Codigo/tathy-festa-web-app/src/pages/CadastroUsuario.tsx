@@ -28,6 +28,7 @@ export default function CadastroUsuario({ setCurrentContent }: CadastroUsuarioPr
 
     const [snackbarOpen, setSnackbarOpen] = useState(false);
     const [snackbarMessage, setSnackbarMessage] = useState('');
+    const [usuarioAutenticado, setUsuarioAutenticado] = useState(false);
 
     const router = useRouter();
 
@@ -36,6 +37,23 @@ export default function CadastroUsuario({ setCurrentContent }: CadastroUsuarioPr
         { text: 'Login', pageContext: PageContext.Login },
         { text: 'Cadastro', onClick: () => { } },
     ];
+
+    
+  useEffect(() => {
+    const usuarioAutenticado = verificarAutenticacao();
+    setUsuarioAutenticado(usuarioAutenticado);
+    if (!usuarioAutenticado) {
+        router.push('/');
+    }
+}, []);
+
+const verificarAutenticacao = () => {
+    const token = localStorage.getItem('jwtToken');
+    if (token && token !== "undefined") {
+        return true;
+    }
+    return false;
+};
 
     useEffect(() => {
         const carregarUsuarios = async () => {

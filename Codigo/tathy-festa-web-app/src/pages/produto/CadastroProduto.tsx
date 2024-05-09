@@ -1,11 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button, TextField, Grid, Paper, Typography, Box, Snackbar, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
 import ProdutoClass from '../../models/ProdutoClass';
 import ProdutoAPI from '../../API/ProdutoAPI';
 import { Categoria } from '@/types/enums/Categoria';
 import dynamic from 'next/dynamic';
-import { Cor } from '@/types/enums/Cor';
-import { Tamanho } from '@/types/enums/Tamanho';
+import { useRouter } from 'next/router';
 
 const DynamicLayout = dynamic(() => import('@/app/layout'), { ssr: false });
 
@@ -17,7 +16,8 @@ export default function CadastroProduto({ componentRender = false }) {
   const [categoria, setCategoria] = useState('');
   const [quantidadeEstoque, setQuantidadeEstoque] = useState<number>(1);
   const [quantidadeBaixa, setQuantidadeBaixa] = useState<number>(0);
-
+  const router = useRouter();
+  const [usuarioAutenticado, setUsuarioAutenticado] = useState(false);
 
   const [produto, setProduto] = useState<ProdutoClass | null>(null);
 
@@ -28,6 +28,22 @@ export default function CadastroProduto({ componentRender = false }) {
     setSnackbarMessage(mensagem);
     setSnackbarOpen(true);
   };
+
+  useEffect(() => {
+    const usuarioAutenticado = verificarAutenticacao();
+    setUsuarioAutenticado(usuarioAutenticado);
+    if (!usuarioAutenticado) {
+        router.push('/');
+    }
+}, []);
+
+const verificarAutenticacao = () => {
+    const token = localStorage.getItem('jwtToken');
+    if (token && token !== "undefined") {
+        return true;
+    }
+    return false;
+};
 
   const atualizarStateProduto = (novasImagens?: string[]) => {
     const novoProduto = ({

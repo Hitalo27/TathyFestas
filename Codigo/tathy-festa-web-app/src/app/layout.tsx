@@ -6,11 +6,15 @@ import { Inter } from 'next/font/google'
 
 type LayoutProps = {
   children: ReactNode;
+  getLayout?: (page: ReactNode) => ReactNode;
 };
 
 const inter = Inter({ subsets: ['latin'] });
 
-const Layout = ({ children }: LayoutProps) => {
+const Layout = ({ children, getLayout  }: LayoutProps) => {
+
+  const layout = getLayout ? getLayout(children) : children;
+  
   return (
     <html lang="en">
       <body className={inter.className}>

@@ -3,18 +3,40 @@ import { Grid, Paper, Typography, Tabs, Tab } from '@mui/material';
 import ListagemUsuario from '../pages/components/usuario/ListagemUsuario';
 import CadastroProduto from '../pages/produto/CadastroProduto';
 import RelatorioEstoque from './relatorios/RelatorioEstoque';
+import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 
 const DynamicLayout = dynamic(() => import('@/app/layout'), { ssr: false });
 
 export default function PainelAdmin() {
-    useEffect(() => { }, []);
-
+    const router = useRouter();
+    const [usuarioAutenticado, setUsuarioAutenticado] = useState(false);
     const [tabAtiva, setTabAtiva] = useState(0);
+
+    useEffect(() => {
+        // Lógica para verificar se o usuário está autenticado
+        const usuarioAutenticado = verificarAutenticacao(); // Implemente essa função
+        setUsuarioAutenticado(usuarioAutenticado);
+        if (!usuarioAutenticado) {
+            router.push('/'); // Redireciona para a página de login se não estiver autenticado
+        }
+    }, []);
+
+    const verificarAutenticacao = () => {
+        const token = localStorage.getItem('jwtToken');
+        if (token && token !== "undefined") {
+            return true;
+        }
+        return false; // Altere para true se o usuário estiver autenticado
+    };
 
     const handleTrocaTab = (event: React.SyntheticEvent, newValue: number) => {
         setTabAtiva(newValue);
     };
+
+    if (!usuarioAutenticado) {
+        return <div>Verificando autenticação...</div>; // Exibir algo enquanto verifica a autenticação
+    }
 
     return (
         <DynamicLayout>
