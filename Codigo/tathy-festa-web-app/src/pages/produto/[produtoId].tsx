@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Grid, Typography, Button, Card, CardMedia, CardContent, Box, TextField, Snackbar } from '@mui/material';
+import { Grid, Typography, Button, Card, CardMedia, CardContent, Box, TextField, Snackbar, IconButton } from '@mui/material';
 import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, CircularProgress } from '@mui/material';
 import ProdutoClass from '../../models/ProdutoClass';
 import { Produto } from "@/types/Produto";
@@ -148,11 +148,8 @@ export default function DetalhesProduto() {
           <Button onClick={handleCloseDialog} color="primary">
             Fechar
           </Button>
-          {ehSucesso && (
-            <Button onClick={() => router.push(PageContext.Carrinho)} color="secondary">
-              Ir para Carrinho
-            </Button>
-          )}
+          {ehSucesso 
+  }
         </DialogActions>
       </Dialog>
     );
@@ -200,20 +197,20 @@ const imagemAnterior = () => {
     alt={produto.nome}
     sx={{ objectFit: 'cover', width: '100%', height: '100%' }}
   />
-  <Button
+  <IconButton
     onClick={imagemAnterior}
     disabled={imagemAtual === 0}
     sx={{ position: 'absolute', top: '50%', left: 0, transform: 'translateY(-50%)' }}
   >
-    <ArrowBackIcon />
-  </Button>
-  <Button
+    <ArrowBackIcon style={{ color: 'blue', fontSize: 30 }} />
+    </IconButton>
+    <IconButton
     onClick={proximaImagem}
     disabled={imagemAtual === produto.imagens.length - 1}
     sx={{ position: 'absolute', top: '50%', right: 0, transform: 'translateY(-50%)' }}
   >
-    <ArrowForwardIcon />
-  </Button>
+    <ArrowForwardIcon style={{ color: 'blue', fontSize: 30 }} />
+    </IconButton>
 </Card>
           </Grid>
 
