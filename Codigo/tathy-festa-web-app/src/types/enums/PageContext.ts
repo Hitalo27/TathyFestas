@@ -4,6 +4,7 @@ export enum PageContext {
   ListagemProdutos = "/produto/ListagemProdutos",
   CadastroProduto = "/produto/CadastroProduto",
   CadastroUsuario = "/CadastroUsuario",
+  CadastroCliente = "/CadastroCliente",
   Login = "/login/Login",
   EsqueciSenha = "/login/EsqueciSenha",
   RedefinirSenha = "/login/RedefinirSenha",

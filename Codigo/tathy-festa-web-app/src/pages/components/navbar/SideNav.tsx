@@ -91,6 +91,13 @@ const SideNav: FC<SideNavProps> = ({ open, onClose, permissaoUsuario }) => {
                             icon={<UserPlusIcon style={{ width: 20, height: 20, fill: 'white' }} />}
                         />
                     )}
+                    {/* {permissaoUsuario === "ADMIN" && (
+                        <SideNavItem
+                            title="Cadastrar Clientes"
+                            onClick={() => handleNavigation(PageContext.CadastroCliente)}
+                            icon={<UserPlusIcon style={{ width: 20, height: 20, fill: 'white' }} />}
+                        />
+                    )} */}
                 </Stack>
             </Box>
 
