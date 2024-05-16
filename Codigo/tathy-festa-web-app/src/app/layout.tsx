@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
-import TopNav from '../pages/components/navbar/TopNav';
-import Footer from '@/pages/components/footer/Footer';
+import TopNav from '../components/navbar/TopNav';
+import Footer from '@/components/footer/Footer';
 import './globals.css'
 import { Inter } from 'next/font/google'
 

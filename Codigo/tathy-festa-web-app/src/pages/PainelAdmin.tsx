@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Grid, Paper, Typography, Tabs, Tab } from '@mui/material';
-import CadastroCliente from '../pages/components/cliente/CadastroCliente';
-import ListagemCliente from '../pages/components/cliente/ListagemCliente';
+import CadastroCliente from '../components/cliente/CadastroCliente';
+import ListagemCliente from '../components/cliente/ListagemCliente';
 import CadastroProduto from '../pages/produto/CadastroProduto';
 import RelatorioEstoque from './relatorios/RelatorioEstoque';
 import { useRouter } from 'next/router';

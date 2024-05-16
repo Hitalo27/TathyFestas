@@ -4,7 +4,7 @@ import AuthenticationAPI from '@/API/AuthenticationAPI';
 import { PageContext } from '@/types/enums/PageContext';
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
-import Breadcrumbs, { BreadcrumbLink } from '../components/visuals/Breadcrumbs';
+import Breadcrumbs, { BreadcrumbLink } from '../../components/visuals/Breadcrumbs';
 
 const DynamicLayout = dynamic(() => import('@/app/layout'), { ssr: false });
 

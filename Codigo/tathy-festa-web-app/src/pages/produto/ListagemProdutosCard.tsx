@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Stack, Typography, TablePagination } from '@mui/material';
-import ProdutoCardGrid from '../components/produto/ProdutoCardGrid';
+import ProdutoCardGrid from '../../components/produto/ProdutoCardGrid';
 import ProdutoClass from '../../models/ProdutoClass';
 import { Produto } from "@/types/Produto";
 import ProdutoAPI from '../../API/ProdutoAPI';
-import SearchBar from '../components/produto/SearchBar';
+import SearchBar from '../../components/produto/SearchBar';
 
 export default function ProductsPage() {
   const [produtos, setProdutos] = useState<ProdutoClass[]>([]);

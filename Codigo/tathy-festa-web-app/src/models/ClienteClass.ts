@@ -15,7 +15,7 @@ export default class ClienteClass implements Cliente {
   dataEvento: Date;
   horaEvento: string;
   formaPagamento: string;
-  conheceuEmpresa: string;
+  comoConheceu: string;
 
   constructor(
     nomeCompleto: string,
@@ -31,7 +31,7 @@ export default class ClienteClass implements Cliente {
     dataEvento: Date,
     horaEvento: string,
     formaPagamento: string,
-    conheceuEmpresa: string,
+    comoConheceu: string,
     id?: number
   ) {
     this.nomeCompleto = nomeCompleto;
@@ -47,7 +47,7 @@ export default class ClienteClass implements Cliente {
     this.dataEvento = dataEvento;
     this.horaEvento = horaEvento;
     this.formaPagamento = formaPagamento;
-    this.conheceuEmpresa = conheceuEmpresa;
+    this.comoConheceu = comoConheceu;
 
     if (id) {
       this.id = id;
@@ -72,7 +72,7 @@ export default class ClienteClass implements Cliente {
       dataEvento: this.dataEvento,
       horaEvento: this.horaEvento,
       formaPagamento: this.formaPagamento,
-      conheceuEmpresa: this.conheceuEmpresa,
+      comoConheceu: this.comoConheceu,
     };
   }
 }

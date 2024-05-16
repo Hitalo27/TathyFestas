@@ -5,10 +5,10 @@ import {
 } from '@mui/material';
 import ProdutoClass from '../../models/ProdutoClass';
 import ProdutoAPI from '../../API/ProdutoAPI';
-import SearchBar from '../components/produto/SearchBar';
-import ProdutoCardGrid from '../components/produto/ProdutoCardGrid';
+import SearchBar from '../../components/produto/SearchBar';
+import ProdutoCardGrid from '../../components/produto/ProdutoCardGrid';
 import dynamic from 'next/dynamic';
-import Breadcrumbs, { BreadcrumbLink } from '../components/visuals/Breadcrumbs';
+import Breadcrumbs, { BreadcrumbLink } from '../../components/visuals/Breadcrumbs';
 import { PageContext } from '@/types/enums/PageContext';
 
 const DynamicLayout = dynamic(() => import('@/app/layout'), { ssr: false });

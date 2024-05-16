@@ -15,7 +15,7 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 import Zoom from '@mui/material/Zoom';
-import Breadcrumbs, { BreadcrumbLink } from '../components/visuals/Breadcrumbs';
+import Breadcrumbs, { BreadcrumbLink } from '../../components/visuals/Breadcrumbs';
 
 const DynamicLayout = dynamic(() => import('@/app/layout'), { ssr: false });
 
