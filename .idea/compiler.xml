@@ -3,12 +3,6 @@
   <component name="CompilerConfiguration">
     <annotationProcessing>
       <profile default="true" name="Default" enabled="true" />
-      <profile name="Maven default annotation processors profile" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <module name="tathy-festas" />
-      </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="browsestore" target="20" />
@@ -16,7 +10,6 @@
       <module name="browsestore.test" target="20" />
       <module name="erp-email" target="21" />
       <module name="tathy-festa" target="17" />
-      <module name="tathyfestas" target="21" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
