@@ -20,8 +20,20 @@ services:
       - backend
 
   db:
-    image: postgres:latest
+    image: postgres
+    container_name: 8bdcd2186b74
+    hostname: 8bdcd2186b74
+    mac_address: "02:42:ac:11:00:02"
     environment:
-      POSTGRES_PASSWORD: admin
+      - LANG=en_US.utf8
+      - PG_MAJOR=16
+      - PG_VERSION=16.1-1.pgdg120+1
+      - PGDATA=/var/lib/postgresql/data
+      - POSTGRES_PASSWORD=admin
+      - PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/lib/postgresql/16/bin
+      - GOSU_VERSION=1.16
+    volumes:
+      - /var/lib/postgresql/data
     ports:
       - "5432:5432"
+    restart: no
