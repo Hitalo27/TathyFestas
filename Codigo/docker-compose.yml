@@ -9,6 +9,7 @@ services:
       - "8082:8082"
     depends_on:
       - db
+    container_name: backend
     networks:
       - app-network
 
@@ -20,6 +21,8 @@ services:
       - "3000:3000"
     depends_on:
       - backend
+    environment:
+      - NEXT_PUBLIC_API_URL=http://backend:8082
     networks:
       - app-network
 
