@@ -8,7 +8,7 @@ tsnode.register({
 });
 
 const app = express();
-const PORT = process.env.PORT || 3000; // Porta do seu servidor Node.js
+const PORT = process.env.PORT || 80; // Porta do seu servidor Node.js
 
 // Rota para servir o componente ListagemProduto.tsx
 app.get('/', (req, res) => {
