@@ -18,7 +18,7 @@ services:
       context: ./tathy-festa-web-app
       dockerfile: Dockerfile
     ports:
-      - "80:80"
+      - "3000:3000"
     depends_on:
       - backend
     environment:
@@ -36,7 +36,7 @@ services:
       - PG_MAJOR=16
       - PG_VERSION=16.1-1.pgdg120+1
       - PGDATA=/var/lib/postgresql/data
-      - POSTGRES_PASSWORD=admin
+      - POSTGRES_PASSWORD=T@thyAdmin27
       - PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/lib/postgresql/16/bin
       - GOSU_VERSION=1.16
     volumes:

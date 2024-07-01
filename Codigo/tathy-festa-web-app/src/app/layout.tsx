@@ -1,4 +1,5 @@
 import React, { ReactNode } from 'react';
+import Head from 'next/head';
 import TopNav from '../components/navbar/TopNav';
 import Footer from '@/components/footer/Footer';
 import './globals.css'
@@ -17,6 +18,10 @@ const Layout = ({ children, getLayout  }: LayoutProps) => {
   
   return (
     <html lang="en">
+  <Head>
+            <link rel="icon" href="/tathy.ico" />
+            <title>{"Tathy Festa" || 'Default Title'}</title>
+          </Head>
       <body className={inter.className}>
         <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', alignItems: 'stretch' }}>
           <TopNav />

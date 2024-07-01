@@ -1,4 +1,14 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const nextConfig = {
+  async rewrites() {
+    return [
+      {
+        source: '/api/:path*',
+        destination: 'http://localhost:8082/api/:path*', // URL do seu backend
+      },
+    ];
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
+

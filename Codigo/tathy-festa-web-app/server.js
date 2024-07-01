@@ -8,9 +8,29 @@ tsnode.register({
 });
 
 const app = express();
-const PORT = process.env.PORT || 80; // Porta do seu servidor Node.js
+const PORT = process.env.PORT || 3000; // Porta do seu servidor Node.js
 
 // Rota para servir o componente ListagemProduto.tsx
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+sfa
+dsa
 app.get('/', (req, res) => {
   // Importe o componente ListagemProduto.tsx
   const ListagemProduto = require('tathy-festa-web-app/src/pages/index.tsx');
