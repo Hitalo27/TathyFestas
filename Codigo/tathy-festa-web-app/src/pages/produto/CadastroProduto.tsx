@@ -132,7 +132,7 @@ const verificarAutenticacao = () => {
         id: produto.id,
         nome: produto.nome,
         descricao: produto.descricao,
-        preco: produto.preco,
+        preco: parseFloat(preco.toString()),
         imagens: imagensBase64,
         categoria: produto.categoria,
         quantidadeEstoque: produto.quantidadeEstoque,

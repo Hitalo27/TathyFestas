@@ -21,6 +21,7 @@
     "@types/react-dom": "18.2.7",
     "autoprefixer": "^10.4.15",
     "axios": "^1.5.0",
+    "browse-store-web-app": "file:",
     "date-fns": "^3.6.0",
     "eslint": "^8.49.0",
     "eslint-config-next": "13.4.19",
@@ -47,5 +48,3 @@
     "typescript": "5.2.2"
   }
 }
-
-

@@ -6,18 +6,29 @@ import { Produto } from "@/types/Produto";
 class ProdutoAPI {
   static async criarProduto(produto: Produto): Promise<AxiosResponse<any>> {
     console.log(produto);
-    return await axios.post("/produtos", produto);
+    return await axios.post("/api/produtos", produto);
   }
 
 static async buscarTodosProdutos(): Promise<AxiosResponse<any>> {
   try {
-    const resposta = await axios.get("/produtos");
+    const resposta = await axios.get("/api/produtos");
     return resposta;
   } catch (erro) {
     console.error("Erro ao buscar produtos:", erro);
     throw erro;
   }
 }
+
+static async buscarProdutosPaginacao(page: number, limit: number): Promise<AxiosResponse<any>> {
+  return await axios.get(`/api/produtos/paginacao?`, {
+    params: {
+      page,
+      limit,
+    },
+  });
+}
+
+
 //
 //   static async buscarTodosProdutos(): Promise<AxiosResponse<any>> {
 //     const response = await axios.get("/api/produtos");
@@ -31,35 +42,35 @@ static async buscarTodosProdutos(): Promise<AxiosResponse<any>> {
 
 
   static async buscarProdutoPorId(id: number): Promise<AxiosResponse<any>> {
-    return await axios.get(`/produtos/${id}`);
+    return await axios.get(`/api/produtos/${id}`);
   }
 
   //TODO talvez 'name' esteja deprecado
   static async pesquisarProdutos(query: string): Promise<AxiosResponse<any>> {
-    return await axios.get(`/produtos?nome=${query}`);
+    return await axios.get(`/api/produtos?nome=${query}`);
   }
 
   static async buscarItensEstoque(): Promise<AxiosResponse<any>> {
-    return await axios.get("/itens");
+    return await axios.get("/api/itens");
   }
 
 
 
 static async adicionarNovoItem(nome: String, quantidade: number): Promise<AxiosResponse<any>> {
-  return await axios.post("/itens", {nome, quantidade});
+  return await axios.post("/api/itens", {nome, quantidade});
 } 
 
 static async deletarItem(id: number): Promise<AxiosResponse<any>> {
-      return await axios.delete(`/itens/${id}`)
+      return await axios.delete(`/api/itens/${id}`)
 
 };
 
 static async incrementarQuantidadeItem(id: number): Promise<AxiosResponse<any>> {
-  return await axios.put(`/itens/incrementar/${id}`);
+  return await axios.put(`/api/itens/incrementar/${id}`);
 } 
 
 static async decrementarQuantidadeItem(id: number): Promise<AxiosResponse<any>> {
-  return await axios.put(`/itens/decrementar/${id}`);
+  return await axios.put(`/api/itens/decrementar/${id}`);
 } 
 
 }

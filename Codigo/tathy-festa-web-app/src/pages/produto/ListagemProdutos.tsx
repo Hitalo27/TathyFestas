@@ -15,7 +15,8 @@ const DynamicLayout = dynamic(() => import('@/app/layout'), { ssr: false });
 
 export default function ListagemProdutos() {
   const [produtos, setProdutos] = useState<ProdutoClass[]>([]);
-  const [produtosFiltrados, setProdutosFiltrados] = useState<ProdutoClass[]>([]);
+  const [totalProdutos, setTotalProdutos] = useState<number>(0); 3
+  
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [isCardView, setIsCardView] = useState(true);
@@ -35,13 +36,13 @@ export default function ListagemProdutos() {
       setIsLoading(true); // Define isLoading como true ao iniciar a busca
 
       try {
-        const response = await ProdutoAPI.buscarTodosProdutos();
-
-        const listaProdutos = response.data.map((produto: any) => new ProdutoClass(produto));
+        const response = await ProdutoAPI.buscarProdutosPaginacao(page, rowsPerPage);
+    
+        const listaProdutos = response.data.content.map((produto: any) => new ProdutoClass(produto));
 
         setProdutos(listaProdutos);
-        setProdutosFiltrados(listaProdutos.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage));
-      } catch (error) {
+        setTotalProdutos(response.data.totalElements);
+     } catch (error) {
         console.error('Erro ao buscar decoração:', error);
       } finally {
         setIsLoading(false); // Define isLoading como false ao finalizar a busca
@@ -62,7 +63,7 @@ export default function ListagemProdutos() {
 
   const onInstantSearch = (query: string) => {
     const produtosFiltrados = produtos.filter(produto => produto.nome.toLowerCase().includes(query.toLowerCase()));
-    setProdutosFiltrados(produtosFiltrados.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage));
+    setProdutos(produtosFiltrados);
   };
 
   const onSearch = async (query: string) => {
@@ -74,8 +75,9 @@ export default function ListagemProdutos() {
       const produtosPesquisa = response.data.map((produto: any) => new ProdutoClass(produto));
 
       setProdutos(produtosPesquisa);
+      setTotalProdutos(response.data.totalElements);
       setPage(0);
-      setProdutosFiltrados(produtosPesquisa.slice(0, rowsPerPage));
+  
     } catch (error) {
       console.error('Erro ao buscar decoração:', error);
     } finally {
@@ -96,11 +98,6 @@ export default function ListagemProdutos() {
 
         <SearchBar onInstantSearch={onInstantSearch} onSearch={onSearch} />
 
-        <FormControlLabel
-          control={<Switch checked={isCardView} onChange={toggleView} color="primary" />}
-          label={isCardView ? "Visualização Cartão" : "Visualização Tabela"}
-        />
-
         {isLoading ? ( // Mostra indicador de carregamento se isLoading for true
           <Box display="flex" flexDirection="column" alignItems="center" mt={4}>
             <CircularProgress />
@@ -108,7 +105,7 @@ export default function ListagemProdutos() {
           </Box>
         ) : (
           isCardView ? (
-            <ProdutoCardGrid produtos={produtosFiltrados} />
+            <ProdutoCardGrid produtos={produtos} />
           ) : (
             <Box mt={4}>
               <Table>
@@ -122,7 +119,7 @@ export default function ListagemProdutos() {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {produtosFiltrados.map(produto => (
+                  {produtos.map(produto => (
                     <TableRow key={produto.id}>
                       <TableCell>{produto.nome}</TableCell>
                       <TableCell>{produto.descricao}</TableCell>
@@ -143,7 +140,7 @@ export default function ListagemProdutos() {
 
         <TablePagination
           component="div"
-          count={produtos.length}
+          count={totalProdutos}
           page={page}
           onPageChange={onPageChange}
           rowsPerPage={rowsPerPage}

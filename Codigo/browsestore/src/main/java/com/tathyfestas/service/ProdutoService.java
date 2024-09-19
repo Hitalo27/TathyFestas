@@ -2,9 +2,14 @@ package com.tathyfestas.service;
 
 import com.tathyfestas.DTO.ExibirProdutosDTO;
 import com.tathyfestas.DTO.ProdutoDTO;
+import com.tathyfestas.DTO.ProdutoPageDTO;
 import com.tathyfestas.repository.ProdutoRepository;
 import com.tathyfestas.model.Produto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,18 +21,26 @@ public class ProdutoService {
     @Autowired
     private ProdutoRepository _produtoRepository;
 
-    public List<ExibirProdutosDTO> buscarTodosProdutos() {
-        List<Produto> produtos = _produtoRepository.findAll();
-        return produtos.stream()
-                .map(this::mapProdutoParaExibirProdutosDTO)
-                .collect(Collectors.toList());
+    public List<Produto> buscarTodosProdutos() {
+        return _produtoRepository.findAll();
     }
 
-    private ExibirProdutosDTO mapProdutoParaExibirProdutosDTO(Produto produto) {
-        ExibirProdutosDTO dto = new ExibirProdutosDTO(produto.getId(), produto.getNome(), produto.getDescricao(), produto.getPreco(), produto.getQuantidadeEstoque(),
-         produto.getCategoria(), produto.getImagens(), produto.getQuantidadeBaixa());
+    public List<Produto> buscarProdutosPorNome(String nome) {
+        return _produtoRepository.findByNomeContainingIgnoreCase(nome);
+    }
+
+    public ProdutoPageDTO buscarProdutosPaginacao(int page, int limit) {
+        Pageable pageable = PageRequest.of(page, limit, Sort.by("quantidadeEstoque").ascending());
+        Page<Produto> produtoPage = _produtoRepository.findAll(pageable);
+
+        ProdutoPageDTO dto = new ProdutoPageDTO(
+                produtoPage.getContent(), produtoPage.getTotalPages(), produtoPage.getTotalElements(), produtoPage.getNumber(), produtoPage.getSize()
+        );
+
+
         return dto;
     }
+
 
     public Produto buscarProdutoPorId(Long id) {
         System.out.println(_produtoRepository.findById(id).orElse(null));
@@ -46,7 +59,6 @@ public class ProdutoService {
     public void deletarProduto(Long id) {
         _produtoRepository.deleteById(id);
     }
-
 
 
 }

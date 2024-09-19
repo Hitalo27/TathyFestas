@@ -197,21 +197,28 @@ const imagemAnterior = () => {
     alt={produto.nome}
     sx={{ objectFit: 'cover', width: '100%', height: '100%' }}
   />
-  <IconButton
-    onClick={imagemAnterior}
-    disabled={imagemAtual === 0}
-    sx={{ position: 'absolute', top: '50%', left: 0, transform: 'translateY(-50%)' }}
-  >
-    <ArrowBackIcon style={{ color: 'blue', fontSize: 30 }} />
-    </IconButton>
-    <IconButton
-    onClick={proximaImagem}
-    disabled={imagemAtual === produto.imagens.length - 1}
-    sx={{ position: 'absolute', top: '50%', right: 0, transform: 'translateY(-50%)' }}
-  >
-    <ArrowForwardIcon style={{ color: 'blue', fontSize: 30 }} />
-    </IconButton>
-</Card>
+  {produto.imagens.length > 1 && (
+           <>
+           {imagemAtual > 0 && (
+             <IconButton
+               onClick={imagemAnterior}
+               sx={{ position: 'absolute', top: '50%', left: 0, transform: 'translateY(-50%)' }}
+             >
+               <ArrowBackIcon style={{ color: 'blue', fontSize: 30 }} />
+             </IconButton>
+           )}
+         
+           {imagemAtual < produto.imagens.length - 1 && (
+             <IconButton
+               onClick={proximaImagem}
+               sx={{ position: 'absolute', top: '50%', right: 0, transform: 'translateY(-50%)' }}
+             >
+               <ArrowForwardIcon style={{ color: 'blue', fontSize: 30 }} />
+             </IconButton>
+           )}
+         </>
+          )}
+            </Card>
           </Grid>
 
 
