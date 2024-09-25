@@ -67,6 +67,11 @@ export default function TopNav() {
         onClose={() => setSideNavOpen(false)}
         permissaoUsuario={permissaoUsuario}
       />
+       <div className="scrolling-container">
+      <div className="scrolling-text">
+      Promoções especiais com a locação de pipoca e algodão doce!
+      </div>
+    </div>
     </>
   );
 }
