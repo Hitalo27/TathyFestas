@@ -12,6 +12,8 @@ import TopNavUsuario from './TopNavUsuario';
 import { PageContext } from '@/types/enums/PageContext';
 import Image from "next/image";
 import logo from '../../assets/images/tathy.png';
+import "./ScrollingText.css";
+
 
 export default function TopNav() {
   const [usuarioLogado, setUsuarioLogado] = useState<boolean>(false);
