@@ -24,6 +24,14 @@ public class ProdutoController {
         return _produtoService.buscarProdutosPaginacao(page, limit);
     }
 
+    @GetMapping("/paginacao/{categoria}")
+    public ProdutoPageDTO buscarProdutosPorCategoria(@RequestParam(defaultValue = "0") int page,
+                                                     @RequestParam(defaultValue = "10") int limit,
+                                                     @PathVariable String categoria){
+        return _produtoService.buscarProdutosPorCategoria(page,limit, categoria);
+
+    }
+
 
 
     @GetMapping
@@ -34,10 +42,8 @@ public class ProdutoController {
         return _produtoService.buscarTodosProdutos();
     }
 
-    @GetMapping("/{id}")
-    public Produto buscarProdutoPorId(@PathVariable Long id) {
-        return _produtoService.buscarProdutoPorId(id);
-    }
+
+    
 
     @PostMapping
     public Produto salvarProduto(@RequestBody ProdutoDTO produtoDTO) {
@@ -50,6 +56,4 @@ public class ProdutoController {
     public void deletarProduto(@PathVariable Long id) {
         _produtoService.deletarProduto(id);
     }
-
-
 }

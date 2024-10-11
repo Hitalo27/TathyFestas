@@ -1,10 +1,11 @@
 package com.tathyfestas.service;
 
-import com.tathyfestas.DTO.ExibirProdutosDTO;
 import com.tathyfestas.DTO.ProdutoDTO;
 import com.tathyfestas.DTO.ProdutoPageDTO;
-import com.tathyfestas.repository.ProdutoRepository;
+import com.tathyfestas.model.Categoria;
 import com.tathyfestas.model.Produto;
+import com.tathyfestas.repository.ProdutoRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -13,7 +14,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class ProdutoService {
@@ -37,6 +37,21 @@ public class ProdutoService {
                 produtoPage.getContent(), produtoPage.getTotalPages(), produtoPage.getTotalElements(), produtoPage.getNumber(), produtoPage.getSize()
         );
 
+
+        return dto;
+    }
+
+    @Transactional
+    public ProdutoPageDTO buscarProdutosPorCategoria(int page, int limit, String categoria) {
+        Pageable pageable = PageRequest.of(page, limit, Sort.by("quantidadeEstoque").ascending());
+
+        Categoria categoriaEnum = Categoria.valueOf(categoria.toUpperCase());
+        System.out.println(categoriaEnum);
+
+        Page<Produto> produtoPage = _produtoRepository.findByCategoria(categoriaEnum ,pageable);
+        ProdutoPageDTO dto = new ProdutoPageDTO(
+                produtoPage.getContent(), produtoPage.getTotalPages(), produtoPage.getTotalElements(), produtoPage.getNumber(), produtoPage.getSize()
+        );
 
         return dto;
     }

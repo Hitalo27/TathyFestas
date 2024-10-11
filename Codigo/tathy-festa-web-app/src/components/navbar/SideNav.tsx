@@ -8,7 +8,7 @@ import SquaresPlusIcon from '@heroicons/react/24/solid/SquaresPlusIcon';
 import { SideNavItem } from './SideNavItem';
 import { PageContext } from '@/types/enums/PageContext';
 
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/router';
 
 interface SideNavProps {
     open?: boolean;
@@ -19,8 +19,13 @@ interface SideNavProps {
 const SideNav: FC<SideNavProps> = ({ open, onClose, permissaoUsuario }) => {
     const router = useRouter();
 
-    const handleNavigation = (path: PageContext) => {
-        router.push(path as any);
+    const handleNavigation = (path: PageContext, categoria?: string) => {
+        if(categoria){
+        router.push({pathname: path,
+            query: { categoria }
+        }
+        );
+        }
         if (onClose) onClose();
     };
 
@@ -73,10 +78,36 @@ const SideNav: FC<SideNavProps> = ({ open, onClose, permissaoUsuario }) => {
             <Box component="nav" sx={{ flexGrow: 1, px: 2, py: 3 }}>
                 <Stack component="ul" spacing={0.5} sx={{ listStyle: 'none', p: 0, m: 0 }}>
                     <SideNavItem
-                        title="Decorações"
+                        title="Todas Decorações"
                         onClick={() => handleNavigation(PageContext.ListagemProdutos)}
                         icon={<ShoppingBagIcon style={{ width: 20, height: 20, fill: 'white' }} />}
                     />
+                       <SideNavItem
+                        title="Decorações infantis"
+                        onClick={() => handleNavigation(PageContext.ListagemProdutos, 'INFANTIL')}
+                        icon={<ShoppingBagIcon style={{ width: 20, height: 20, fill: 'white' }} />}
+                    />
+                      <SideNavItem
+                        title="Decorações de Casamentos"
+                        onClick={() => handleNavigation(PageContext.ListagemProdutos, 'CASAMENTO')}
+                        icon={<ShoppingBagIcon style={{ width: 20, height: 20, fill: 'white' }} />}
+                    />
+                      <SideNavItem
+                        title="Decorações de Bodas"
+                        onClick={() => handleNavigation(PageContext.ListagemProdutos, 'BODAS')}
+                        icon={<ShoppingBagIcon style={{ width: 20, height: 20, fill: 'white' }} />}
+                    />
+                     <SideNavItem
+                        title="Decorações de cha de panela"
+                        onClick={() => handleNavigation(PageContext.ListagemProdutos, 'CHA_DE_PANELA')}
+                        icon={<ShoppingBagIcon style={{ width: 20, height: 20, fill: 'white' }} />}
+                    />
+                     <SideNavItem
+                        title="Decorações de Formatura"
+                        onClick={() => handleNavigation(PageContext.ListagemProdutos, 'FORMATURA')}
+                        icon={<ShoppingBagIcon style={{ width: 20, height: 20, fill: 'white' }} />}
+                    />
+
                     {permissaoUsuario === "ADMIN" && (
                         <SideNavItem
                             title="Cadastrar Decorações"
@@ -87,7 +118,7 @@ const SideNav: FC<SideNavProps> = ({ open, onClose, permissaoUsuario }) => {
                     {permissaoUsuario === "ADMIN" && (
                         <SideNavItem
                             title="Cadastrar Usuarios"
-                            onClick={() => handleNavigation(PageContext.CadastroUsuario)}
+                            onClick={() => handleNavigation(PageContext.CadastroUsuario, 'INFANTIL')}
                             icon={<UserPlusIcon style={{ width: 20, height: 20, fill: 'white' }} />}
                         />
                     )}

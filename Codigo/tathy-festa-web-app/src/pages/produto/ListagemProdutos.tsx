@@ -10,6 +10,7 @@ import ProdutoCardGrid from '../../components/produto/ProdutoCardGrid';
 import dynamic from 'next/dynamic';
 import Breadcrumbs, { BreadcrumbLink } from '../../components/visuals/Breadcrumbs';
 import { PageContext } from '@/types/enums/PageContext';
+import { useRouter } from 'next/router';
 
 const DynamicLayout = dynamic(() => import('@/app/layout'), { ssr: false });
 
@@ -21,6 +22,9 @@ export default function ListagemProdutos() {
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [isCardView, setIsCardView] = useState(true);
   const [isLoading, setIsLoading] = useState(false); // Estado para controlar o carregamento
+
+  const router = useRouter();
+  const { categoria } = router.query;
 
   const breadcrumbLinks: BreadcrumbLink[] = [
     { text: 'Home', pageContext: PageContext.Home },
@@ -36,8 +40,13 @@ export default function ListagemProdutos() {
       setIsLoading(true); // Define isLoading como true ao iniciar a busca
 
       try {
-        const response = await ProdutoAPI.buscarProdutosPaginacao(page, rowsPerPage);
-    
+        let response;
+        if (categoria){
+          response = await ProdutoAPI.buscarProdutosPorCategoria(page, rowsPerPage, categoria);
+        }else{
+         response = await ProdutoAPI.buscarProdutosPaginacao(page, rowsPerPage);
+        }
+
         const listaProdutos = response.data.content.map((produto: any) => new ProdutoClass(produto));
 
         setProdutos(listaProdutos);
@@ -50,7 +59,7 @@ export default function ListagemProdutos() {
     };
 
     buscarProdutos();
-  }, [page, rowsPerPage]);
+  }, [page, rowsPerPage, categoria]);
 
   const onPageChange = (event: unknown, newPage: number) => {
     setPage(newPage);

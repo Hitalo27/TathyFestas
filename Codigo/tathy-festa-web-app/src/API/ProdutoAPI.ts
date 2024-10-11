@@ -28,6 +28,16 @@ static async buscarProdutosPaginacao(page: number, limit: number): Promise<Axios
   });
 }
 
+static async buscarProdutosPorCategoria(page: number, limit: number, categoria: string | string[]): Promise<AxiosResponse<any>> {
+  return await axios.get(`/api/produtos/paginacao/${categoria}?`, {
+    params: {
+      page,
+      limit,
+    },
+  });
+}
+
+
 
 //
 //   static async buscarTodosProdutos(): Promise<AxiosResponse<any>> {
