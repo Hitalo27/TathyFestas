@@ -46,7 +46,6 @@ public class ProdutoService {
         Pageable pageable = PageRequest.of(page, limit, Sort.by("quantidadeEstoque").ascending());
 
         Categoria categoriaEnum = Categoria.valueOf(categoria.toUpperCase());
-        System.out.println(categoriaEnum);
 
         Page<Produto> produtoPage = _produtoRepository.findByCategoria(categoriaEnum ,pageable);
         ProdutoPageDTO dto = new ProdutoPageDTO(

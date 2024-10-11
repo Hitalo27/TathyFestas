@@ -60,7 +60,7 @@ const SideNav: FC<SideNavProps> = ({ open, onClose, permissaoUsuario }) => {
                             mt: 2,
                             p: '12px'
                         }}
-                        onClick={() => handleNavigation(PageContext.PainelAdmin)}
+                        onClick={() => handleNavigation(PageContext.PainelAdmin, ' ')}
                     >
                         <div>
                             <Typography color="inherit" variant="subtitle1"> Tathy Festas </Typography>
@@ -77,11 +77,11 @@ const SideNav: FC<SideNavProps> = ({ open, onClose, permissaoUsuario }) => {
 
             <Box component="nav" sx={{ flexGrow: 1, px: 2, py: 3 }}>
                 <Stack component="ul" spacing={0.5} sx={{ listStyle: 'none', p: 0, m: 0 }}>
-                    <SideNavItem
+                    {/* <SideNavItem
                         title="Todas Decorações"
-                        onClick={() => handleNavigation(PageContext.ListagemProdutos)}
+                        onClick={() => handleNavigation(PageContext.ListagemProdutos, ' ')}
                         icon={<ShoppingBagIcon style={{ width: 20, height: 20, fill: 'white' }} />}
-                    />
+                    /> */}
                        <SideNavItem
                         title="Decorações infantis"
                         onClick={() => handleNavigation(PageContext.ListagemProdutos, 'INFANTIL')}
@@ -111,14 +111,14 @@ const SideNav: FC<SideNavProps> = ({ open, onClose, permissaoUsuario }) => {
                     {permissaoUsuario === "ADMIN" && (
                         <SideNavItem
                             title="Cadastrar Decorações"
-                            onClick={() => handleNavigation(PageContext.CadastroProduto)}
+                            onClick={() => handleNavigation(PageContext.CadastroProduto, ' ')}
                             icon={<SquaresPlusIcon style={{ width: 20, height: 20, fill: 'white' }} />}
                         />
                     )}
                     {permissaoUsuario === "ADMIN" && (
                         <SideNavItem
                             title="Cadastrar Usuarios"
-                            onClick={() => handleNavigation(PageContext.CadastroUsuario, 'INFANTIL')}
+                            onClick={() => handleNavigation(PageContext.CadastroUsuario, ' ')}
                             icon={<UserPlusIcon style={{ width: 20, height: 20, fill: 'white' }} />}
                         />
                     )}
